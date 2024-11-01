@@ -1,0 +1,16 @@
+1 crear un proyecto
+2 crear un app
+3 listar la app en el setting.py del proyecto
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'app1.apps.App1Config', #app creada
+]
+
+4 craer una vista en la app View.py
+5 crear Urls.py en la app para que la vista sea accesible
+6 llamar a la vista desde la url en urls.py del proyecto
