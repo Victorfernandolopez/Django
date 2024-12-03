@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image and Description</title>
+    {% load static %}
+</head>
+<body>
+    <h1>Image and Description</h1>
+    <div>
+        {% load static %}
+        <img src="{% static 'images/form.jpg' %}" alt="Formulario">
+        <p>Django Administración de Formularios
+            <div>1. Usuario/Navegador web
+                    - El navegador solicita una página con un formulario (Browser requests page with form).
+                    - El usuario llena o actualiza el formulario (User populates or updates form).</div>
+            
+            <div>2. Servidor
+                    - Si es la primera solicitud a la URL:
+                        * Se crea un formulario "sin enlazar" por defecto (Create "unbound" default form).
+                    - El servidor envía el formulario al usuario (Send bound form to user).
+                
+                    - Si el formulario es enviado al servidor:
+                        * Los datos del formulario son validados (Validate data).
+                        * Si los datos son válidos:
+                            - Se realiza una acción con los datos válidos (Perform action on valid data).
+                            - El navegador es redirigido a una URL de éxito (Redirect browser to success URL).
+                        * Si los datos no son válidos:
+                            - Se crea un formulario con los datos del usuario y los mensajes de error correspondientes (Create form with user-data and error messages).
+                            - El formulario se envía de vuelta al usuario (Send bound form to user).</div>
+            <div>3. Fin del Proceso
+                    - El flujo termina después de una redirección o tras mostrar el formulario con errores.</div>
+            
+            </p>
+    </div>
+</body>
+</html>
