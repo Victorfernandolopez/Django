@@ -1,0 +1,77 @@
+# Activa tu entorno virtual (si no está activado)
+# En Windows
+.\venv\Scripts\activate
+
+# En Linux/Mac
+source venv/bin/activate
+
+# Ejecuta el shell de Django
+python manage.py shell
+
+# Importa tu modelo
+from myapp.models import MyModel
+
+# Crea un nuevo registro
+nuevo_registro = MyModel(campo1='valor1', campo2='valor2')
+nuevo_registro.save()
+
+# Verifica que el registro se haya creado
+print(MyModel.objects.all())
+
+¿Cuántos productos hay en la base de datos?
+Producto.objects.count()
+
+¿Cuáles son los nombres de los productos cuyo precio es mayor a 100?
+Producto.objects.filter(precio__gt=100)
+
+¿Existe algún producto con el nombre "Mouse Inalámbrico"?
+Producto.objects.filter(nombre="Mouse Inalámbrico").exists()
+
+Para asegurarte de que encuentras el producto sin importar diferencias de acentos o mayúsculas/minúsculas, usa el filtro iexact (insensible a mayúsculas/minúsculas):
+Producto.objects.filter(nombre__iexact="mouse inalambrico").exists()
+
+
+Operaciones avanzadas en Django Shell
+En esta sección practicaremos las siguientes operaciones:
+
+1. Actualizar un registro
+Puedes actualizar un registro existente modificando sus atributos y guardándolo nuevamente con .save().
+Ejemplo:
+Abre el Django Shell y prueba lo siguiente:
+from modelos.models import Producto
+# Obtén el primer producto
+producto = Producto.objects.first()
+# Actualiza el atributo stock
+producto.stock = 50
+producto.save()
+# Verifica el cambio
+print(producto.stock)
+
+
+2. Eliminar un registro
+Usa el método .delete() para eliminar un registro.
+Ejemplo:
+# Elimina el primer producto
+producto = Producto.objects.first()
+producto.delete()
+
+# Verifica que el producto ya no existe
+productos = Producto.objects.all()
+print(productos)
+
+3. Filtrar con condiciones más complejas
+Django ORM permite combinar filtros para crear consultas avanzadas.
+Ejemplo:
+Busca productos con un precio mayor a 100 y con stock mayor a 20:
+productos = Producto.objects.filter(precio__gt=100, stock__gt=20)
+for producto in productos:
+    print(producto)
+
+4. Uso de métodos de agregación
+Puedes realizar cálculos como sumar precios, obtener promedios, etc., usando las funciones de agregación de Django.
+Ejemplo:
+Calcular el precio promedio de todos los productos:
+from django.db.models import Avg
+
+precio_promedio = Producto.objects.aggregate(Avg('precio'))
+print(precio_promedio)
